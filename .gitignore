@@ -1,8 +1,8 @@
-input_data/
-output_data/
-output_data_generated/
-plots/
-viz/
-__pycache__
+input_data/*
+output_data/*
+output_data_generated/*
+plots/*
+viz/*
+__pycache__/
 index.html
 struct.html
