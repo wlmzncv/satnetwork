@@ -4,3 +4,5 @@ output_data_generated/
 plots/
 viz/
 __pycache__
+index.html
+struct.html
