@@ -1,6 +1,6 @@
-output_data/*
+input_data/
+output_data/
 output_data_generated/
 plots/
 viz/
-01.txt
-00/
+__pycache__
