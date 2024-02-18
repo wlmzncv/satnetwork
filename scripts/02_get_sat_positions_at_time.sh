@@ -29,7 +29,7 @@
 
 EPOCH="2018/1/1 00:00:01"
 
-CURR_TIME_MINS=$1
+CURR_TIME_MINS=$1 #参数1 分钟数
 NUM_ORBITS=$2
 NUM_SATS_PER_ORBIT=$3
 INCLINATION=$4
@@ -58,16 +58,16 @@ do
 			orbit_wise_shift=0
 		fi
 	fi
-	for (( num_sat_in_orbit=0; num_sat_in_orbit<$NUM_SATS_PER_ORBIT; num_sat_in_orbit++ ))
+	for (( num_sat_in_orbit=0; num_sat_in_orbit < $NUM_SATS_PER_ORBIT; num_sat_in_orbit++ ))
 	do		
-		meanAnomaly=$(echo "scale=2; $orbit_wise_shift + ($num_sat_in_orbit * 360 / $NUM_SATS_PER_ORBIT)" | bc) # Spread satellites along an orbit
-		# echo "$num_orbit $num_sat_in_orbit $raan $meanAnomaly"
+		meanAnomaly=$(echo "scale=2; $orbit_wise_shift + ($num_sat_in_orbit * 360 / $NUM_SATS_PER_ORBIT)" | bc) # bc用于进行浮点数计算 Spread satellites along an orbit
+		#echo "$num_orbit $num_sat_in_orbit $raan $meanAnomaly"
 
-		python get_sat_location.py $EPOCH $curr_t $raan $meanAnomaly $counter $num_orbit $INCLINATION $ECCENTRICITY $ARG_OF_PERIGEE $MEAN_MOTION $num_sat_in_orbit >> ../output_data_generated/sat_positions/sat_positions_$min"".txt
+		python get_sat_location.py $EPOCH $curr_t $raan $meanAnomaly $counter $num_orbit $INCLINATION $ECCENTRICITY $ARG_OF_PERIGEE $MEAN_MOTION $num_sat_in_orbit >> ../output_data_generated/sat_positions/sat_positions_"$min".txt
 		last_orbit=$num_orbit
 		counter=$(( $counter + 1 ))
 	done
 done
-cat ../output_data_generated/sat_positions/sat_positions_$min"".txt | awk -F' ' '{print $1,$2,$3,$4,$5,$6/1000}' | sed -e "s/ /,/g" >> ../output_data_generated/sat_positions/sat_positions_"$min"_formatted.txt
-rm ../output_data_generated/sat_positions/sat_positions_$min"".txt
+cat ../output_data_generated/sat_positions/sat_positions_"$min".txt | awk -F' ' '{print $1,$2,$3,$4,$5,$6/1000}' | sed -e "s/ /,/g" >> ../output_data_generated/sat_positions/sat_positions_"$min"_formatted.txt
+rm -f ../output_data_generated/sat_positions/sat_positions_"$min".txt
 echo "done for $min min"

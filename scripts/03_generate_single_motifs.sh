@@ -26,7 +26,7 @@
 # Example: ./03_generate_single_motifs.sh 7
 
 # Remove old data
-rm ../output_data_generated/single_motif/*
+rm -f ../output_data_generated/single_motif/*
 
 # Run script that generates all motifs for the 40x40 53deg inclined constellation
 # The argument is the number of cores assigned to the routine

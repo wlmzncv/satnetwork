@@ -28,7 +28,7 @@
 # Example: ./04_generate_multi_motifs.sh 40_40_53deg 5014 7
 
 # Remove old data
-rm ../output_data_generated/multi_motif/*
+rm -f ../output_data_generated/multi_motif/*
 
 # Run script that generates all 3-zone multi_motifs
 python3 find_multi_motifs.py $1 $2 $3

@@ -25,18 +25,18 @@
 # Generate time varying constellation satellite positions based on configuration
 ##########################################################################################
 
-NUM_ORBITS=40 # options: 40 (for 40_40_53deg), 34 (kuiper_p1), 24 (starlink_p1)
-NUM_SATS_PER_ORBIT=40 # options: 40 (for 40_40_53deg), 34 (kuiper_p1), 66 (starlink_p1)
-INCLINATION=53 # options: 53 (for 40_40_53deg), 51.9 (kuiper_p1), 53 (starlink_p1)
+NUM_ORBITS=40 # 轨道面数 options: 40 (for 40_40_53deg), 34 (kuiper_p1), 24 (starlink_p1)
+NUM_SATS_PER_ORBIT=40 # 每轨道卫星数 options: 40 (for 40_40_53deg), 34 (kuiper_p1), 66 (starlink_p1)
+INCLINATION=53 # 轨道倾角 options: 53 (for 40_40_53deg), 51.9 (kuiper_p1), 53 (starlink_p1)
 ECCENTRICITY=0.001 # Circular orbits
 ARG_OF_PERIGEE=0.0 # Circular orbits
 MEAN_MOTION=15.19 # 15.19 taken from Tintin A anb B TLEs
 PHASE_DIFF="Y" # Neighboring satellites in adjacent orbits has a phase difference
 
-rm ../output_data_generated/sat_positions/*
+rm -f ../output_data_generated/sat_positions/*
 
 #Get satellite positions for 120 minutes starting from epoch
-for (( i=0; i<120; i++ ))
+for (( i=0; i<10; i++ ))
 do
-	./02_get_sat_positions_at_time.sh $i $NUM_ORBITS $NUM_SATS_PER_ORBIT $INCLINATION $ECCENTRICITY $ARG_OF_PERIGEE $MEAN_MOTION $PHASE_DIFF
+	bash ./02_get_sat_positions_at_time.sh $i $NUM_ORBITS $NUM_SATS_PER_ORBIT $INCLINATION $ECCENTRICITY $ARG_OF_PERIGEE $MEAN_MOTION $PHASE_DIFF
 done

@@ -22,7 +22,7 @@
 
 import math
 
-EARTH_RADIUS = 6371  # Kms
+EARTH_RADIUS = 6371  # 地球半径 Kms
 
 
 def compute_isl_length(sat1, sat2, sat_positions):
@@ -50,7 +50,7 @@ def compute_isl_length(sat1, sat2, sat_positions):
 
 def read_city_positions(city_pos_file, graph):
     """
-    eads city coordinates and population
+    reads city coordinates and population
     :param city_pos_file: file containing city coordinates and population
     :param graph: The graph to populate
     :return: collection of cities with coordinates and populations, updated graph
